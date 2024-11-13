@@ -1,2 +1,2 @@
-# Transmitter_Lora
-Code for Transmitter data
+# Trash Bin Volume Monitoring with Ultrasonic Sensor and LoRa Communication
+This project uses an ultrasonic sensor attached to an ESP32 to monitor the filling level of a trash bin. The ESP32 measures the distance from the top to the trash content, calculates the occupied volume, and displays this information on an OLED screen. Additionally, the project uses a LoRa module to remotely send the readings.
