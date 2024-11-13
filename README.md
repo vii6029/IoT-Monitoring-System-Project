@@ -1,2 +1,2 @@
-# Sender_Lora
-Code for Sender´s data
+# Transmitter_Lora
+Code for Transmitter data
