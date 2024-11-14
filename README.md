@@ -21,3 +21,25 @@ Display: The OLED display will show the current readings and the maximum recorde
 
 LoRa Transmission: Distance and volume data are sent remotely via LoRa.
 
+Este projeto utiliza um sensor ultrassônico acoplado a um ESP32 para monitorar o nível de preenchimento de uma lixeira. O ESP32 mede a distância do topo até o conteúdo da lixeira, calcula o volume ocupado e exibe essa informação em uma tela OLED. Além disso, o projeto utiliza um módulo LoRa para enviar as leituras remotamente.
+
+FUNCIONALIDADES
+
+Medição de Distância: Usa um sensor ultrassônico para medir a profundidade da lixeira e determinar o volume preenchido.
+
+Display OLED: Exibe a distância medida, o volume atual e o volume máximo registrado.
+
+Comunicação LoRa: Envia informações de volume e distância remotamente via tecnologia LoRa.
+
+Monitor Serial: Exibe as leituras no monitor serial para depuração.
+
+COMO USAR
+
+Inicialização: O ESP32 tentará conectar-se ao módulo LoRa e inicializar o display OLED.
+
+Leitura de Dados: O sensor ultrassônico mede repetidamente a distância até o conteúdo da lixeira, e o ESP32 calcula o volume preenchido como uma porcentagem.
+
+Exibição: O display OLED mostrará as leituras atuais e o volume máximo registrado.
+
+Transmissão via LoRa: Os dados de distância e volume são enviados remotamente via LoRa.
+
