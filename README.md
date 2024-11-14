@@ -1,45 +1,71 @@
-# Trash Bin Volume Monitoring with Ultrasonic Sensor and LoRa Communication
-This project uses an ultrasonic sensor attached to an ESP32 to monitor the filling level of a trash bin. The ESP32 measures the distance from the top to the trash content, calculates the occupied volume, and displays this information on an OLED screen. Additionally, the project uses a LoRa module to remotely send the readings.
+IoT Waste Management System
+This project is a waste management system based on the Internet of Things (IoT). It utilizes LoRa communication to transmit data between two devices: a Transmitter (sensor module) and a Receiver (data display and MQTT client). The system measures the fill level of a trash container using an ultrasonic sensor and displays the data on an OLED display. The data is also transmitted via LoRa and published to an MQTT broker for remote monitoring.
 
-FEATURES
+Components Used:
+ESP32: Microcontroller for both transmitter and receiver
+LoRa Module: For long-range communication between the transmitter and receiver
+Ultrasonic Sensor: To measure the distance to the trash container’s contents
+OLED Display: For local display of distance, volume, and maximum volume
+MQTT: For remote data publishing and monitoring
+Wi-Fi: For connecting to the MQTT broker
+Transmitter Code:
+The transmitter module collects distance measurements from an ultrasonic sensor, calculates the volume of waste in the container, and sends this data using the LoRa radio module.
 
-Distance Measurement: Uses an ultrasonic sensor to measure the bin’s depth and determine the filled volume.
+Features:
+Measures the distance to the trash container’s contents.
+Calculates the volume based on the measured distance.
+Sends the data via LoRa to the receiver.
+Displays data on an OLED display (distance, volume, and maximum volume).
+Monitors and stores the maximum volume reached in the container.
+Libraries Used:
+LoRa: Library for LoRa communication.
+SPI: For SPI communication between the ESP32 and the LoRa module.
+Ultrasonic: To interface with the ultrasonic sensor.
+Adafruit SSD1306 & GFX: Libraries for displaying data on the OLED screen.
+Wire: For I2C communication.
+Receiver Code:
+The receiver module receives data sent by the transmitter via LoRa. It then displays the data on an OLED display and publishes it to an MQTT broker for remote monitoring.
 
-OLED Display: Shows the measured distance, current volume, and maximum recorded volume.
+Features:
+Receives distance and volume data via LoRa.
+Displays the data on an OLED display.
+Publishes distance and volume data to an MQTT broker for remote monitoring.
+Uses Wi-Fi for MQTT communication.
+Libraries Used:
+LoRa: Library for LoRa communication.
+SPI: For SPI communication between the ESP32 and the LoRa module.
+Wi-Fi: For connecting to the Wi-Fi network.
+EspMQTTClient: Library for MQTT communication.
+Adafruit SSD1306 & GFX: Libraries for displaying data on the OLED screen.
+Wire: For I2C communication.
+How It Works:
+Transmitter Module:
 
-LoRa Communication: Sends volume and distance information remotely via LoRa technology.
+The transmitter uses an ultrasonic sensor to measure the distance to the contents of a trash container.
+The distance is converted to volume and displayed on an OLED screen.
+The data (distance, volume, and maximum volume) is sent to the receiver via LoRa.
+Receiver Module:
 
-Serial Monitor: Displays readings in the serial monitor for debugging.
+The receiver listens for LoRa packets containing the data.
+Once received, it displays the data on an OLED screen.
+It then publishes the data to an MQTT broker for remote monitoring, allowing for real-time tracking of the trash container's fill status.
+MQTT Integration:
+MQTT Broker: The system uses the Tago.io MQTT broker for remote data publishing.
+Topics:
+Dados/Mqtt/distancia_lida: Distance data from the transmitter.
+Dados/Mqtt/volume_lido: Volume data from the transmitter.
+Dados/Mqtt/volume_maximo_registrado: Maximum volume data.
+Setup and Configuration:
+Transmitter:
 
-HOW TO USE
+Connect the ultrasonic sensor and LoRa module to the ESP32.
+Initialize the LoRa communication and display in the setup() function.
+The system continuously measures the distance, calculates the volume, and sends data via LoRa.
+Receiver:
 
-Initialization: The ESP32 will attempt to connect to the LoRa module and initialize the OLED display.
-
-Data Reading: The ultrasonic sensor repeatedly measures the distance to the trash content, and the ESP32 calculates the filled volume as a percentage.
-
-Display: The OLED display will show the current readings and the maximum recorded volume.
-
-LoRa Transmission: Distance and volume data are sent remotely via LoRa.
-
-Este projeto utiliza um sensor ultrassônico acoplado a um ESP32 para monitorar o nível de preenchimento de uma lixeira. O ESP32 mede a distância do topo até o conteúdo da lixeira, calcula o volume ocupado e exibe essa informação em uma tela OLED. Além disso, o projeto utiliza um módulo LoRa para enviar as leituras remotamente.
-
-FUNCIONALIDADES
-
-Medição de Distância: Usa um sensor ultrassônico para medir a profundidade da lixeira e determinar o volume preenchido.
-
-Display OLED: Exibe a distância medida, o volume atual e o volume máximo registrado.
-
-Comunicação LoRa: Envia informações de volume e distância remotamente via tecnologia LoRa.
-
-Monitor Serial: Exibe as leituras no monitor serial para depuração.
-
-COMO USAR
-
-Inicialização: O ESP32 tentará conectar-se ao módulo LoRa e inicializar o display OLED.
-
-Leitura de Dados: O sensor ultrassônico mede repetidamente a distância até o conteúdo da lixeira, e o ESP32 calcula o volume preenchido como uma porcentagem.
-
-Exibição: O display OLED mostrará as leituras atuais e o volume máximo registrado.
-
-Transmissão via LoRa: Os dados de distância e volume são enviados remotamente via LoRa.
+Connect the LoRa module and OLED display to the ESP32.
+Configure the Wi-Fi and MQTT settings in the code (SSID, password, MQTT broker address, etc.).
+The receiver listens for LoRa packets, displays the data, and sends it to the MQTT broker.
+Conclusion:
+This system enables efficient waste management by providing real-time monitoring of trash containers. By utilizing LoRa for long-range communication and MQTT for remote data access, the system offers a practical solution for smart waste monitoring.
 
